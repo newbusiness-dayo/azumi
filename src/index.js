@@ -7,6 +7,16 @@ if (!process.env.token) {
     process.exit(1);
 }
 
+if (!process.env.channel) {
+    console.log('Error: Specify channel in environment');
+    process.exit(1);
+}
+
+if (!process.env.last_article_date) {
+    console.log('Error: Specify last_article_date in environment');
+    process.exit(1);
+}
+
 const controller = BotKit.slackbot({
     debug: process.env.NODE_ENV === 'production' ? false : true
 });

@@ -2,7 +2,7 @@ import moment from 'moment';
 import RssWatcher from '../libs/RssReader';
 
 const NEWS_URL ="http://b.hatena.ne.jp/search/text?q=%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E6%95%99%E8%82%B2+%7C+%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E6%95%99%E6%9D%90+%7C+%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E6%95%99%E5%AE%A4+%7C+ICT%E6%95%99%E8%82%B2&mode=rss";
-let lastArticleDate = process.env.last_article_date|0;
+let lastArticleDate = parseInt(process.env.last_article_date);
 export default bot => {
     const watcher = new RssWatcher(NEWS_URL);
 
@@ -10,6 +10,7 @@ export default bot => {
         const texts = [];
         articles.forEach(article => {
             const articleDate = moment(article.date).format('x');
+            console.log(lastArticleDate, articleDate, lastArticleDate < articleDate);
             if (lastArticleDate < articleDate) {
                 texts.push(toPostText(article));
             }
