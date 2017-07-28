@@ -10,7 +10,6 @@ export default bot => {
         const texts = [];
         articles.forEach(article => {
             const articleDate = moment(article.date).format('x');
-            console.log(lastArticleDate, articleDate, lastArticleDate < articleDate);
             if (lastArticleDate < articleDate) {
                 texts.push(toPostText(article));
             }
@@ -27,7 +26,7 @@ export default bot => {
         });
 
         lastArticleDate = moment(articles.pop().date).format('x');
-        console.debug(lastArticleDate);
+        console.info(`last article date: ${lastArticleDate}`);
     });
 
     watcher.on('error', err => {
