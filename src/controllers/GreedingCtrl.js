@@ -27,12 +27,11 @@ export default controller => {
     );
 
     controller.hears(
-        ["さよなら", "おやすみ"],
+        ["さよなら", "おやすみ", "おつかれ", "お疲れ"],
         'direct_message,direct_mention,mention',
         (bot, message) => {
             const text = [
                 'お疲れ様でした',
-                'お疲れ様でした、また明日お会いしましょう',
                 '今日も1日大変でしたね。お疲れ様でした。',
             ];
             bot.reply(message, text[(Math.random() * text.length)|0]);
@@ -40,12 +39,11 @@ export default controller => {
     );
 
     controller.hears(
-        ["おつかれ", "お疲れ"],
+        ["助かった", "助かる", "助かります"],
         'direct_message,direct_mention,mention',
         (bot, message) => {
             const text = [
                 'いえ、私はそんなに大したことは',
-                'ありがとうございます',
             ];
             bot.reply(message, text[(Math.random() * text.length)|0]);
         }
