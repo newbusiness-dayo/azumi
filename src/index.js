@@ -16,8 +16,8 @@ const bot = controller.spawn({
 }).startRTM((err, bot, payload) => {
     if(err) { throw new Error('bot does not wake up...'); }
 
-    // 挨拶
-    GreedingCtrl(controller);
     // ニュースのつぶやき
     NewsFeedCtrl(bot);
+    // 挨拶
+    GreedingCtrl(controller);
 });
