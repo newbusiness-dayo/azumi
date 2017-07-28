@@ -28,6 +28,11 @@ export default bot => {
         lastArticleDate = moment(articles.pop().date).format('x');
         console.debug(lastArticleDate);
     });
+
+    watcher.on('error', err => {
+        console.warn(err);
+    })
+
 };
 
 const toPostText = (article) => {

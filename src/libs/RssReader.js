@@ -42,7 +42,7 @@ export default class RssWatcher extends EventEmitter
         request.get(this._rssUrl)
             .set('User-Agent', 'superagent')
             .buffer()
-            .on('error', err => this.emit('error', err))
+            .on('error', err => { this.emit('error', err); })
             .on('response', (res) => {
                 if (res.statusCode !== 200) {
                     this.emit('error', new Error`HTTP [${res.statusCode}]`);
