@@ -1,7 +1,7 @@
 export default controller => {
     // 朝の挨拶
     controller.hears(
-        ["おはよう"],
+        ['おはよう'],
         'direct_message,direct_mention,mention',
         (bot, message) => {
             const text = [
@@ -14,7 +14,7 @@ export default controller => {
     );
 
     controller.hears(
-        ["こんにちは", "こんにちわ"],
+        ['こんにちは', 'こんにちわ'],
         'direct_message,direct_mention,mention',
         (bot, message) => {
             const text = [
@@ -27,7 +27,7 @@ export default controller => {
     );
 
     controller.hears(
-        ["さよなら", "おやすみ", "おつかれ", "お疲れ"],
+        ['さよなら', 'おやすみ', 'おつかれ', 'お疲れ'],
         'direct_message,direct_mention,mention',
         (bot, message) => {
             const text = [
@@ -39,7 +39,7 @@ export default controller => {
     );
 
     controller.hears(
-        ["助かった", "助かる", "助かります"],
+        ['助かった', '助かる', '助かります'],
         'direct_message,direct_mention,mention',
         (bot, message) => {
             const text = [
@@ -50,7 +50,7 @@ export default controller => {
     );
 
     controller.hears(
-        ["さすが", "すごい"],
+        ['さすが', 'すごい'],
         'direct_message,direct_mention,mention',
         (bot, message) => {
             const text = [
@@ -62,7 +62,7 @@ export default controller => {
     );
 
     controller.hears(
-        ["ありがとう"],
+        ['ありがとう'],
         'direct_message,direct_mention,mention',
         (bot, message) => {
             const text = [
@@ -73,7 +73,7 @@ export default controller => {
     );
 
     controller.hears(
-        ["疲れた", "つかれた"],
+        ['疲れた', 'つかれた'],
         'direct_message,direct_mention,mention',
         (bot, message) => {
             const text = [
@@ -85,7 +85,7 @@ export default controller => {
     );
 
     controller.hears(
-        ["ねむい", "眠い"],
+        ['ねむい', '眠い'],
         'direct_message,direct_mention,mention',
         (bot, message) => {
             const text = [

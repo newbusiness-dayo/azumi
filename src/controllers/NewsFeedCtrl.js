@@ -1,7 +1,7 @@
 import moment from 'moment';
 import RssWatcher from '../libs/RssReader';
 
-const NEWS_URL ="http://b.hatena.ne.jp/search/text?q=%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E6%95%99%E8%82%B2+%7C+%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E6%95%99%E6%9D%90+%7C+%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E6%95%99%E5%AE%A4+%7C+ICT%E6%95%99%E8%82%B2&mode=rss";
+const NEWS_URL ='http://b.hatena.ne.jp/search/text?q=%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E6%95%99%E8%82%B2+%7C+%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E6%95%99%E6%9D%90+%7C+%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E6%95%99%E5%AE%A4+%7C+ICT%E6%95%99%E8%82%B2&mode=rss';
 let lastArticleDate = parseInt(process.env.last_article_date);
 export default bot => {
     const watcher = new RssWatcher(NEWS_URL);
@@ -13,16 +13,19 @@ export default bot => {
             if (lastArticleDate < articleDate) {
                 texts.push(toPostText(article));
             }
-        })
+        });
 
         if(texts.length === 0) {
-            console.info('no new articles');
+            console.info(`no new articles from ${lastArticleDate}`);
             return;
         }
 
-        bot.say({
-            text: texts.join('\n'),
-            channel: process.env.channel
+        texts.forEach(text => {
+            bot.say({
+                text: text,
+                channel: process.env.channel
+            });
+            sleep(500);
         });
 
         lastArticleDate = moment(articles.pop().date).format('x');
@@ -31,7 +34,7 @@ export default bot => {
 
     watcher.on('error', err => {
         console.warn(err);
-    })
+    });
 
 };
 
@@ -40,5 +43,13 @@ const toPostText = (article) => {
     const title = article.title;
     const link  = article.link;
 
-    return `${date.format('YYYY/MM/DD hh:mm:ss')} - ${title}\n${link}\n`
+    return `${date.format('YYYY/MM/DD hh:mm:ss')} - ${title}\n${link}\n`;
+};
+
+const sleep = function(time) {
+    const d1 = new Date();
+    while (true) {
+        const d2 = new Date();
+        if (d2 - d1 > time) return;
+    }
 };

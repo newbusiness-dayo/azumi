@@ -1,5 +1,6 @@
 import BotKit from 'botkit';
 import GreedingCtrl from './controllers/GreedingCtrl';
+import DialogCtrl   from './controllers/DialogCtrl';
 import NewsFeedCtrl from './controllers/NewsFeedCtrl';
 
 if (!process.env.token) {
@@ -21,7 +22,7 @@ const controller = BotKit.slackbot({
     debug: process.env.NODE_ENV === 'production' ? false : true
 });
 
-const bot = controller.spawn({
+controller.spawn({
     token: process.env.token
 }).startRTM((err, bot, payload) => {
     if(err) { throw new Error('bot does not wake up...'); }
@@ -30,4 +31,6 @@ const bot = controller.spawn({
     NewsFeedCtrl(bot);
     // 挨拶
     GreedingCtrl(controller);
+    // 会話
+    DialogCtrl(controller);
 });

@@ -33,8 +33,7 @@ export default class RssWatcher extends EventEmitter
             while(article = feedparser.read()){
                 this.articles.push(article);
             }
-        })
-        .on('end', () => {
+        }).on('end', () => {
             this.emit('new_article', this.articles.reverse());
             this.articles = [];
         });
@@ -48,7 +47,7 @@ export default class RssWatcher extends EventEmitter
                     this.emit('error', new Error`HTTP [${res.statusCode}]`);
                 }
             })
-            .pipe(feedparser)
+            .pipe(feedparser);
 
         setTimeout(this._loadNewArticles.bind(this), this._interval);
     }
