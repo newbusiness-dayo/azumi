@@ -28,7 +28,7 @@ export default bot => {
             sleep(500);
         });
 
-        lastArticleDate = moment(articles.pop().date).format('x');
+        lastArticleDate = +moment(articles.pop().date).format('x');
         console.info(`last article date: ${lastArticleDate}`);
     });
 
