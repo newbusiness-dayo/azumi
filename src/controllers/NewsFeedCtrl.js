@@ -1,7 +1,7 @@
 import moment from 'moment';
 import RssWatcher from '../libs/RssReader';
 
-const NEWS_URL ='http://b.hatena.ne.jp/search/text?q=%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E6%95%99%E8%82%B2+%7C+%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E6%95%99%E6%9D%90+%7C+%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E6%95%99%E5%AE%A4+%7C+ICT%E6%95%99%E8%82%B2&mode=rss';
+const NEWS_URL = 'http://b.hatena.ne.jp/search/text?q=%E6%95%99%E8%82%B2+%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0+%7C+%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0+%E6%95%99%E6%9D%90+%7C+ICT%E6%95%99%E8%82%B2+%7C+%E5%B0%8F%E5%AD%A6%E7%94%9F%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0+%7C+%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0%E3%82%B9%E3%82%AF%E3%83%BC%E3%83%AB&mode=rss';
 let lastArticleDate = parseInt(process.env.last_article_date);
 export default bot => {
     const watcher = new RssWatcher(NEWS_URL);
