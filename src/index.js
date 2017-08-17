@@ -37,7 +37,7 @@ controller.spawn({
 });
 
 // dummy http server
-import http = from 'http';
+import http from 'http';
 http.createServer((req, res) => {
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end('OK');
