@@ -19,6 +19,16 @@ if (!process.env.last_article_date) {
     process.exit(1);
 }
 
+// dummy http server
+import http from 'http';
+http.createServer((req, res) => {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('OK');
+}).listen(process.env.port || 3000, () => {
+    console.log(`http server is opened on ${process.env.port||3000}`);
+});
+
+// setup botkit
 const controller = BotKit.slackbot({
     debug: process.env.NODE_ENV === 'production' ? false : true
 });
@@ -36,9 +46,3 @@ controller.spawn({
     DialogCtrl(controller);
 });
 
-// dummy http server
-import http from 'http';
-http.createServer((req, res) => {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('OK');
-}).listen();
