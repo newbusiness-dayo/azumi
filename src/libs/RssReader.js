@@ -1,4 +1,5 @@
 import EventEmitter from 'eventemitter3';
+import moment from 'moment';
 import FeedParser from 'feedparser';
 import request from 'superagent';
 
@@ -34,7 +35,9 @@ export default class RssWatcher extends EventEmitter
                 this.articles.push(article);
             }
         }).on('end', () => {
-            this.emit('new_article', this.articles.reverse());
+            this.emit('new_article', this.articles.sort((x,y)=>{
+                return moment(x.date) - moment(y.date);
+            }));
             this.articles = [];
         });
 

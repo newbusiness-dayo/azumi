@@ -16,12 +16,11 @@ export default bot => {
         });
 
         if(texts.length === 0) {
-            console.info(`no new articles from ${new Date(lastArticleDate)}`);
+            console.info(`no new articles from ${moment(lastArticleDate).format('YYYY/MM/DD HH:mm:ss')}`);
             return;
         }
 
         texts.forEach(text => {
-            //console.log(text);
             bot.say({
                 text: text,
                 channel: process.env.channel
