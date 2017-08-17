@@ -44,5 +44,16 @@ controller.spawn({
     GreedingCtrl(controller);
     // 会話
     DialogCtrl(controller);
+
+    controller.hears('*', 'direct_message,direct_mention,mention',
+        (bot, message) => {
+            const text = [
+                '呼ばれ・・・てないですね、はい',
+                '・・・なんだネコか',
+                '誰か呼びました？気のせいですね。'
+            ];
+            bot.reply(message, text[(Math.random() * text.length)|0]);
+        }
+    );
 });
 
