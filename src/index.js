@@ -4,27 +4,14 @@ import DialogCtrl   from './controllers/DialogCtrl';
 import NewsFeedCtrl from './controllers/NewsFeedCtrl';
 
 
-if (!process.env.token) {
-    console.log('Error: Specify token in environment');
-    process.exit(1);
-}
-
-if (!process.env.channel) {
-    console.log('Error: Specify channel in environment');
-    process.exit(1);
-}
-
-if (!process.env.last_article_date) {
-    console.log('Error: Specify last_article_date in environment');
-    process.exit(1);
-}
 
 // dummy http server
-import http from 'http';
-http.createServer((req, res) => {
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('OK');
-}).listen(process.env.PORT || 3000, () => {
+import express from 'express';
+const app = express();
+app.get('/', function(request, response) {
+    response.send('OK')
+});
+app.listen(process.env.PORT||3000, function() {
     console.log(`http server is opened on ${process.env.PORT||3000}`);
 });
 

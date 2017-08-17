@@ -21,10 +21,10 @@ export default bot => {
         }
 
         texts.forEach(text => {
-            bot.say({
-                text: text,
-                channel: process.env.channel
-            });
+            //bot.say({
+            //    text: text,
+            //    channel: process.env.channel
+            //});
             sleep(500);
         });
 
