@@ -3,6 +3,7 @@ import GreedingCtrl from './controllers/GreedingCtrl';
 import DialogCtrl   from './controllers/DialogCtrl';
 import NewsFeedCtrl from './controllers/NewsFeedCtrl';
 
+
 if (!process.env.token) {
     console.log('Error: Specify token in environment');
     process.exit(1);
@@ -34,3 +35,10 @@ controller.spawn({
     // 会話
     DialogCtrl(controller);
 });
+
+// dummy http server
+import http = from 'http';
+http.createServer((req, res) => {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('OK');
+}).listen();
